@@ -1,0 +1,25 @@
+version: '3'
+services:
+
+  elasticsearch:
+    image: elasticsearch
+    ports:
+      - 9200:9200
+    environment:
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    command: "-Elogger.level=ERROR"
+    volumes:
+      - ./elasticsearch/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+      - ./es-data/:/tmp/ /usr/share/elasticsearch/data/
+
+  kibana:
+    image: kibana
+    environment:
+      - XPACK_MONITORING_ENABLED
+    ports:
+      - 5601:5601
+      - 5044:5044
+    links:
+      - elasticsearch:elasticsearch
+    depends_on:
+      - elasticsearch
