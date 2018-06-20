@@ -1,2 +1,2 @@
 network.host: 0.0.0.0
-path.repo: ["/tmp","/tmp/es-backup"]
+path.repo: ["/tmp/data","/tmp/es-backup/data"]

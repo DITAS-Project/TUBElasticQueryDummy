@@ -7,10 +7,8 @@ services:
       - 9200:9200
     environment:
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
-    command: "-Elogger.level=ERROR"
     volumes:
-      - ./elasticsearch/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
-      - ./es-data/:/tmp/ /usr/share/elasticsearch/data/
+      - ./elasticsearch/es-data/data/:/usr/share/elasticsearch/data
 
   kibana:
     image: kibana
